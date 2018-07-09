@@ -3,11 +3,10 @@ from cantera import *
 from SDToolbox import *
 thisfilename = os.path.abspath('lookupY_05.py')
 write = 1
-directory = '/home/piotr/'
 writetofilename = 'cTable_fpT_07'
-logfilename = directory + writetofilename + '.log' # full logfile name
+logfilename = writetofilename + '.log' # full logfile name
 
-fn = directory + writetofilename + '.csv' #full filename
+fn = writetofilename + '.csv' #full filename
 
 h2=[0.0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46, 0.48, 0.5, 0.52, 0.54, 0.56, 0.58, 0.6]
 nh2=len(h2) # H2 mole fraction 
@@ -32,8 +31,7 @@ nsp =  gas0.n_species
 ynames=gas0.species_names
 
 # find fuel, nitrogen, and oxygen indices
-fuel = raw_input('Fuel\n')
-ih2 = gas0.species_index(fuel)
+ih2 = gas0.species_index('H2')
 io2  = gas0.species_index('O2')
 in2  = gas0.species_index('N2')
 #ih2o = gas0.species_index('H2O')
@@ -76,7 +74,7 @@ for i in range (0,nh2):
                   logid.write('%1.5f, %1.3e, %4.1f' %(fH[i], p[j], T[k]))
                   for l in range (0,len(mtemp)):
                       logid.write(' %1.5e' %mtemp[l])
-                  logid.write('\n' %mtemp[l])
+                  logid.write('\n')
 if write:
        logid.close # close log file
 print('writing file')

@@ -4,12 +4,10 @@ from cantera import *
 from SDToolbox import *
 thisfilename = os.path.abspath('lookupIGN_06.py')
 write = 1
-#directory = raw_input('Path to result directory\n')
-directory = '/home/piotr/'
 writetofilename = 'LOG_tignTable_fpT_09'
-logfilename = directory + writetofilename + '.log' # full logfile name
+logfilename = writetofilename + '.log' # full logfile name
 
-fn = directory + writetofilename + '.csv' #full filename
+fn = writetofilename + '.csv' #full filename
 
 h2=[1*1e-2, 5*1e-2, 10*1e-2, 20*1e-2, 30*1e-2, 40*1e-2, 50*1e-2, 60*1e-2] 
 nh2=len(h2); # H2 mole fraction 
@@ -26,14 +24,11 @@ n2=list(h2)
 lenght = nh2*nP*nT
 print(lenght)
 
-#mech = raw_input('Reaction mechanism name\n')
 mech = 'OConaire.cti'
 gas0 = Solution(mech) 
 nsp =  gas0.n_species
 # find fuel, nitrogen, and oxygen indices
-#fuel = raw_input('Fuel\n')
-fuel = 'H2'
-ih2 = gas0.species_index(fuel)
+ih2 = gas0.species_index('H2')
 io2  = gas0.species_index('O2')
 in2  = gas0.species_index('N2')
 #ih2o = gas0.species_index('H2O')
