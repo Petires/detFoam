@@ -10,7 +10,7 @@ fn = writetofilename + '.csv' #full filename
 
 h2=np.append(np.arange(0,31,1),np.arange(32,61,2))
 nh2=len(h2) # H2 mole fraction 
-p=np.append(np.append([0.1, 0.9, 1.1, 2, 5],np.arange(10,40,10)),[60*1e5, 80*1e5, 100*1e5, 125*1e5, 150*1e5])*1e5
+p=np.append(np.append([0.1, 0.9, 1.1, 2, 5],np.arange(10,40,10)),[60, 80, 100, 125, 150])*1e5
 nP =len(p)
 T=np.arange(250,1601,20)
 nT=len(T)
