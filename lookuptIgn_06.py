@@ -9,11 +9,11 @@ logfilename = writetofilename + '.log' # full logfile name
 
 fn = writetofilename + '.csv' #full filename
 
-h2=[1*1e-2, 5*1e-2, 10*1e-2, 20*1e-2, 30*1e-2, 40*1e-2, 50*1e-2, 60*1e-2] 
+h2=np.array([1, 5, 10, 20, 30, 40, 50, 60])*1e-2
 nh2=len(h2); # H2 mole fraction 
 fH = [0.0]*len(h2)
   
-p=[0.1*1e5, 0.9*1e5, 1.1*1e5, 2*1e5, 5*1e5, 10*1e5, 20*1e5, 30*1e5, 50*1e5, 75*1e5, 100*1e5]
+p=np.array([0.1, 0.9, 1.1, 2, 5, 10, 20, 30, 50, 75, 100])*1e5
 nP =len(p)
 
 
