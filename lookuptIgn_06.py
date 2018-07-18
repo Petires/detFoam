@@ -31,14 +31,15 @@ nsp =  gas0.n_species
 ih2 = gas0.species_index('H2')
 io2  = gas0.species_index('O2')
 in2  = gas0.species_index('N2')
-#ih2o = gas0.species_index('H2O')
-#ioh  = gas0.species_index('OH')
-#ih  = gas0.species_index('H')
+ih2o = gas0.species_index('H2O')
+ioh  = gas0.species_index('OH')
+ih  = gas0.species_index('H')
 
-x = [0.0]*nsp
-tIgn=np.zeros((nh2,nP,nT))*np.nan
+x = np.zeros(nsp)
+tIgn=np.empty((nh2,nP,nT))*np.nan
 
 fig_num = 2 #0=no plots
+
 while fig_num == 2:
     check = raw_input('Would you like to create plots?(y/n)\n')
     if check == 'y':
@@ -58,7 +59,7 @@ for i in range (0,nh2):
     for j in range (0,nP):
         for k in range (0,nT):
                print([i, j, k])
-               x=[0.0]*nsp
+               x=np.zeros(nsp)
                x[ih2]=h2[i]
                o2[i]=0.21*(1.0-h2[i])
                x[io2]=o2[i]
@@ -73,8 +74,7 @@ for i in range (0,nh2):
                #[out] = explosionHP(gas0,fig_num); # constant pressure explosion
                tIgn[i][j][k] = out.ind_time
                if(tIgn[i][j][k]>0.9):
-                   tIgn[i][j][k]=1e1  
-               print(log10(tIgn[i][j][k]))
+                   tIgn[i][j][k]=1e1
                if(write):
                   logid.write('%1.5f, %1.3e, %4.1f, %1.5e, %1.5f\n'% (fH[i], p[j], T[k], tIgn[i][j][k], log10(tIgn[i][j][k])));
                

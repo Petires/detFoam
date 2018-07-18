@@ -3,21 +3,22 @@ from cantera import *
 from SDToolbox import *
 thisfilename = os.path.abspath('lookupY_05.py')
 write = 1
+showplots=0
 writetofilename = 'cTable_fpT_07'
 logfilename = writetofilename + '.log' # full logfile name
 
 fn = writetofilename + '.csv' #full filename
 
-h2=np.append(np.arange(0,31,1),np.arange(32,61,2))
+h2=np.append(np.arange(0,31,1),np.arange(32,61,2))*1e-2
 nh2=len(h2) # H2 mole fraction 
-p=np.append(np.append([0.1, 0.9, 1.1, 2, 5],np.arange(10,40,10)),[60, 80, 100, 125, 150])*1e5
+p=np.append(np.append([0.1, 0.9, 1.1, 2, 5],np.arange(10,41,10)),[60, 80, 100, 125, 150])*1e5
 nP =len(p)
 T=np.arange(250,1601,20)
 nT=len(T)
-o2=list(h2)
-n2=list(h2)
+o2=np.copy(h2)
+n2=np.copy(h2)
 
-fH = [0.0]*len(h2)
+fH = np.zeros(nh2)
 
 lenght = nh2*nP*nT
 print(lenght)
@@ -34,13 +35,13 @@ ynames=gas0.species_names
 ih2 = gas0.species_index('H2')
 io2  = gas0.species_index('O2')
 in2  = gas0.species_index('N2')
-#ih2o = gas0.species_index('H2O')
-#ioh  = gas0.species_index('OH')
-#ih  = gas0.species_index('H')
+ih2o = gas0.species_index('H2O')
+ioh  = gas0.species_index('OH')
+ih  = gas0.species_index('H')
 
-x = [0]*nsp
-Yout = np.zeros((nh2,nP,nT,nsp))*np.nan
-Tout = np.zeros((nh2,nP,nT))*np.nan
+x = np.zeros(nsp)
+Yout = np.empty((nh2,nP,nT,nsp))*np.nan
+Tout = np.empty((nh2,nP,nT))*np.nan
 # log file:
 if write:
        logid = open(logfilename, 'w')
@@ -57,7 +58,7 @@ for i in range (0,nh2):
     for j in range (0,nP):
         for k in range (0,nT):
                print([i, j, k])
-               x=[0.0]*nsp
+               x=np.zeros(nsp)
                x[ih2]=h2[i]
                o2[i]=0.21*(1-h2[i])
 	       x[io2]=o2[i]

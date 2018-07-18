@@ -172,7 +172,6 @@ def explosion(gas,fig_num):
     MAX = max(temp_grad)
     n = temp_grad.index(MAX)
     b = len(temp_grad)
-    print(b)
 
     #FIND INDUCTION TIME - MAXIMUM TEMPERATURE GRADIENT
     k = 0; MAX = max(temp_grad); d = temp_grad[0]; HMPWt = zeros(2,float)
